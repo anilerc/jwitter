@@ -1,15 +1,23 @@
 package com.anilerc.jwitter.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.anilerc.jwitter.dto.CreateTweetRequest;
+import com.anilerc.jwitter.dto.TweetDto;
+import com.anilerc.jwitter.service.TweetService;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/api/v1/tweets")
+@AllArgsConstructor
 public class TweetController {
 
-    @GetMapping
-    public String hello() {
-        return "Hi!";
+    private final TweetService tweetService;
+
+    @PostMapping
+    public TweetDto createTweet(@Valid @RequestBody CreateTweetRequest request, Principal principal) {
+        return tweetService.createTweet(request, principal);
     }
 }

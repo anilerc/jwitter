@@ -1,9 +1,12 @@
 package com.anilerc.jwitter.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
@@ -11,7 +14,9 @@ import static jakarta.persistence.GenerationType.SEQUENCE;
 @Entity
 @Table(name = "users")
 @Builder
-public class User {
+@NoArgsConstructor
+@AllArgsConstructor
+public class User implements Serializable {
 
     @Id
     @SequenceGenerator(

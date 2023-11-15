@@ -1,7 +1,10 @@
 package com.anilerc.jwitter.service;
 
 import com.anilerc.jwitter.dto.CreateTweetRequest;
+import com.anilerc.jwitter.dto.DeleteTweetRequest;
 import com.anilerc.jwitter.dto.TweetDto;
+import com.anilerc.jwitter.exception.UnauthorizedException;
+import com.anilerc.jwitter.exception.UserNotFoundException;
 import com.anilerc.jwitter.model.Tweet;
 import com.anilerc.jwitter.model.User;
 import com.anilerc.jwitter.repository.TweetRepository;
@@ -29,6 +32,19 @@ public class TweetService {
         tweetRepository.save(newTweet);
 
         return new TweetDto(content);
+    }
+
+    public void deleteTweet(DeleteTweetRequest deleteRequest, Principal principal) {
+        var tweetId = deleteRequest.tweetId();
+
+        Tweet tweet = tweetRepository.findById(tweetId).orElseThrow(() -> new UserNotFoundException("Mismo"));
+
+        if (!(principal.getName().equals(tweet.getUser().getUsername()))) {
+            throw new UnauthorizedException("Not allowed!");
+        }
+
+        tweetRepository.delete(tweet);
+
     }
 
 

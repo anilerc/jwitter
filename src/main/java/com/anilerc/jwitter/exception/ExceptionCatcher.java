@@ -19,6 +19,13 @@ public class ExceptionCatcher {
         return new ResponseEntity<>(appException, appException.httpStatus());
     }
 
+    @ExceptionHandler(value = UnauthorizedException.class)
+    public ResponseEntity<Object> handleUnauthorizedOperation(UnauthorizedException e) {
+        var appException = new AppException(e.getMessage(), HttpStatus.UNAUTHORIZED, ZonedDateTime.now());
+
+        return new ResponseEntity<>(appException, appException.httpStatus());
+    }
+
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public ResponseEntity<Object> handleValidArgumentsException(MethodArgumentNotValidException e) {
         var appException = new AppException("Validation failed for the request.", HttpStatus.BAD_REQUEST, ZonedDateTime.now());

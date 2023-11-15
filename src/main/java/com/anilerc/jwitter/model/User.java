@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -28,6 +27,7 @@ public class User implements Serializable {
             strategy = SEQUENCE,
             generator = "user_sequence"
     )
+    @Getter
     private Long id;
 
     @Getter

@@ -3,6 +3,7 @@ package com.anilerc.jwitter.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
@@ -36,6 +37,7 @@ public class Tweet {
                     name="tweet_user_fk"
             )
     )
+    @Getter
     private User user;
 
     @Column(nullable = false)

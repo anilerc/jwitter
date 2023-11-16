@@ -3,6 +3,7 @@ package com.anilerc.jwitter.service;
 import com.anilerc.jwitter.dto.CreateTweetRequest;
 import com.anilerc.jwitter.dto.DeleteTweetRequest;
 import com.anilerc.jwitter.dto.TweetDto;
+import com.anilerc.jwitter.exception.TweetNotFoundException;
 import com.anilerc.jwitter.exception.UnauthorizedException;
 import com.anilerc.jwitter.exception.UserNotFoundException;
 import com.anilerc.jwitter.model.Tweet;
@@ -45,6 +46,10 @@ public class TweetService {
 
         tweetRepository.delete(tweet);
 
+    }
+
+    public Tweet getTweetById(Long id) {
+        return tweetRepository.findById(id).orElseThrow(() -> new TweetNotFoundException("Tweet not found!"));
     }
 
 

@@ -34,5 +34,12 @@ public class LikeService {
 
     public void removeLike(RemoveLikeRequest request, Principal principal) {
 
+        var tweetToRemoveLike = tweetService.getTweetById(request.tweetId());
+
+        var currentUser = userService.findByUsername(principal.getName());
+
+        var likeToDelete = likeRepository.findByTweetAndUser(tweetToRemoveLike, currentUser).orElseThrow(() -> new LikeNotFoundException("Like not found!"));
+
+        likeRepository.delete(likeToDelete);
     }
 }

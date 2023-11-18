@@ -1,24 +1,20 @@
 package com.anilerc.jwitter.service;
 
-import com.anilerc.jwitter.dto.LoginRequest;
-import com.anilerc.jwitter.dto.RegisterRequest;
-import com.anilerc.jwitter.dto.UserDto;
+import com.anilerc.jwitter.dto.request.LoginRequest;
+import com.anilerc.jwitter.dto.request.RegisterRequest;
+import com.anilerc.jwitter.dto.response.UserDto;
 import com.anilerc.jwitter.model.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolderStrategy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.stereotype.Service;
 
-import java.net.Socket;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.time.LocalDateTime;
 
 @Service

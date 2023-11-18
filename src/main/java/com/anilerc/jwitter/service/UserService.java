@@ -1,6 +1,6 @@
 package com.anilerc.jwitter.service;
 
-import com.anilerc.jwitter.exception.UserNotFoundException;
+import com.anilerc.jwitter.exception.NotFoundException;
 import com.anilerc.jwitter.model.User;
 import com.anilerc.jwitter.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -17,7 +17,7 @@ public class UserService {
     }
 
     public User findByUsername(String username) {
-        return userRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException("User not found!"));
+        return userRepository.findByUsername(username).orElseThrow(() -> new NotFoundException("User not found!"));
     }
 
 }

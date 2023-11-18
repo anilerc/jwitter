@@ -1,9 +1,8 @@
 package com.anilerc.jwitter.controller;
 
-import com.anilerc.jwitter.dto.LoginRequest;
-import com.anilerc.jwitter.dto.RegisterRequest;
-import com.anilerc.jwitter.dto.UserDto;
-import com.anilerc.jwitter.model.User;
+import com.anilerc.jwitter.dto.request.LoginRequest;
+import com.anilerc.jwitter.dto.request.RegisterRequest;
+import com.anilerc.jwitter.dto.response.UserDto;
 import com.anilerc.jwitter.service.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @RestController

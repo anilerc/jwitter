@@ -1,4 +1,4 @@
-package com.anilerc.jwitter.config;
+package com.anilerc.jwitter.exception.config;
 
 import com.anilerc.jwitter.auth.SecurityUserDetailsService;
 import lombok.AllArgsConstructor;

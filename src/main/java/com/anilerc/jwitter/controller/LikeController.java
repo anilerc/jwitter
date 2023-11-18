@@ -1,7 +1,7 @@
 package com.anilerc.jwitter.controller;
 
-import com.anilerc.jwitter.dto.LikeTweetRequest;
-import com.anilerc.jwitter.dto.RemoveLikeRequest;
+import com.anilerc.jwitter.dto.request.LikeTweetRequest;
+import com.anilerc.jwitter.dto.request.RemoveLikeRequest;
 import com.anilerc.jwitter.service.LikeService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

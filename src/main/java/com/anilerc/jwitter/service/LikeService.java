@@ -1,13 +1,10 @@
 package com.anilerc.jwitter.service;
 
-import com.anilerc.jwitter.auth.SecurityUserDetailsService;
-import com.anilerc.jwitter.dto.LikeTweetRequest;
-import com.anilerc.jwitter.dto.RemoveLikeRequest;
-import com.anilerc.jwitter.exception.LikeNotFoundException;
+import com.anilerc.jwitter.dto.request.LikeTweetRequest;
+import com.anilerc.jwitter.dto.request.RemoveLikeRequest;
+import com.anilerc.jwitter.exception.NotFoundException;
 import com.anilerc.jwitter.model.Like;
 import com.anilerc.jwitter.repository.LikeRepository;
-import com.anilerc.jwitter.repository.TweetRepository;
-import com.anilerc.jwitter.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +35,7 @@ public class LikeService {
 
         var currentUser = userService.findByUsername(principal.getName());
 
-        var likeToDelete = likeRepository.findByTweetAndUser(tweetToRemoveLike, currentUser).orElseThrow(() -> new LikeNotFoundException("Like not found!"));
+        var likeToDelete = likeRepository.findByTweetAndUser(tweetToRemoveLike, currentUser).orElseThrow(() -> new NotFoundException("Like not found!"));
 
         likeRepository.delete(likeToDelete);
     }

@@ -1,4 +1,4 @@
-package com.anilerc.jwitter.dto;
+package com.anilerc.jwitter.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

@@ -5,6 +5,8 @@ target/**
 
 secrets/**
 env.properties
+db_user.txt
+db_password.txt
 
 ### STS ###
 .apt_generated

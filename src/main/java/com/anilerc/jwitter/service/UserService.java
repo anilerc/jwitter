@@ -16,7 +16,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public User findByUsername(String username) {
+    protected User findByUsername(String username) {
         return userRepository.findByUsername(username).orElseThrow(() -> new NotFoundException("User not found!"));
     }
 

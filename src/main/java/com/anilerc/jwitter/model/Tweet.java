@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -15,6 +16,7 @@ import static jakarta.persistence.GenerationType.SEQUENCE;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 public class Tweet {
     @Id
     @SequenceGenerator(
@@ -26,7 +28,6 @@ public class Tweet {
             strategy = SEQUENCE,
             generator = "tweet_sequence"
     )
-    @Getter
     private Long id;
 
     @ManyToOne
@@ -38,13 +39,13 @@ public class Tweet {
                     name="tweet_user_fk"
             )
     )
-    @Getter
     private User user;
 
     @Column(nullable = false)
     private String content;
 
     @Column(nullable = false)
+    @CreationTimestamp
     private LocalDateTime createdAt;
 
 }

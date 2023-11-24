@@ -1,7 +1,6 @@
 package com.anilerc.jwitter.service;
 
 import com.anilerc.jwitter.dto.request.CreateTweetRequest;
-import com.anilerc.jwitter.dto.request.DeleteTweetRequest;
 import com.anilerc.jwitter.dto.response.TweetDto;
 import com.anilerc.jwitter.exception.NotFoundException;
 import com.anilerc.jwitter.exception.UnauthorizedException;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -25,17 +23,15 @@ public class TweetService {
     public TweetDto createTweet(CreateTweetRequest request, Principal principal) {
         User user = userService.findByUsername(principal.getName());
         String content = request.content();
-        LocalDateTime createdAt = LocalDateTime.now();
 
-        var newTweet = Tweet.builder().content(content).user(user).createdAt(createdAt).build();
+        Tweet newTweet = Tweet.builder().content(content).user(user).build();
 
         tweetRepository.save(newTweet);
 
         return new TweetDto(content);
     }
 
-    public void deleteTweet(DeleteTweetRequest deleteRequest, Principal principal) {
-        var tweetId = deleteRequest.tweetId();
+    public void deleteTweet(Long tweetId, Principal principal) {
 
         Tweet tweet = tweetRepository.findById(tweetId).orElseThrow(() -> new NotFoundException("Tweet not found!"));
 

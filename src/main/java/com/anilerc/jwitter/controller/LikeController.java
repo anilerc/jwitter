@@ -1,9 +1,7 @@
 package com.anilerc.jwitter.controller;
 
-import com.anilerc.jwitter.dto.request.LikeTweetRequest;
-import com.anilerc.jwitter.dto.request.RemoveLikeRequest;
 import com.anilerc.jwitter.service.LikeService;
-import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,15 +16,15 @@ public class LikeController {
 
     private final LikeService likeService;
 
-    @PostMapping
-    public ResponseEntity<Void> likeTweet(@Valid @RequestBody LikeTweetRequest request, Principal principal) {
-        likeService.likeTweet(request, principal);
+    @PostMapping("/{tweetId}")
+    public ResponseEntity<Void> likeTweet(@PathVariable @NotNull Long tweetId, Principal principal) {
+        likeService.likeTweet(tweetId, principal);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> removeLike(@Valid @RequestBody RemoveLikeRequest request, Principal principal) {
-        likeService.removeLike(request, principal);
+    @DeleteMapping("/{tweetId}")
+    public ResponseEntity<Void> removeLike(@PathVariable @NotNull Long tweetId, Principal principal) {
+        likeService.removeLike(tweetId, principal);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

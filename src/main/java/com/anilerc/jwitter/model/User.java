@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -15,6 +18,7 @@ import static jakarta.persistence.GenerationType.SEQUENCE;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 public class User implements Serializable {
 
     @Id
@@ -27,20 +31,19 @@ public class User implements Serializable {
             strategy = SEQUENCE,
             generator = "user_sequence"
     )
-    @Getter
     private Long id;
 
-    @Getter
     @Column(unique = true, nullable = false)
     private String username;
 
-    @Getter
     @Column(nullable = false)
     private String password;
 
     @Column(nullable = false)
+    @CreationTimestamp
     private LocalDateTime createdAt;
 
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 
     private String avatarUrl;

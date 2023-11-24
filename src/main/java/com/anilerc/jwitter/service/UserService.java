@@ -12,7 +12,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public void addUser(User user) {
+    protected void addUser(User user) {
         userRepository.save(user);
     }
 

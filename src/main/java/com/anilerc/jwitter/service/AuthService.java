@@ -32,7 +32,7 @@ public class AuthService {
 
         var username = request.username();
         var password = passwordEncoder.encode(request.password());
-        var newUser = User.builder().username(username).password(password).createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).avatarUrl("https://www.milton.edu/wp-content/uploads/2019/11/avatar-placeholder.jpg").build();
+        User newUser = User.builder().username(username).password(password).avatarUrl("https://www.milton.edu/wp-content/uploads/2019/11/avatar-placeholder.jpg").build();
 
         userService.addUser(newUser);
 

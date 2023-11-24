@@ -1,34 +1,28 @@
 package com.anilerc.jwitter.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-
-import java.time.LocalDateTime;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
 @Entity
-@Table(name = "likes",
+@Table(name = "retweets",
         uniqueConstraints = @UniqueConstraint(columnNames = {"tweet_id", "user_id"})
-        )
-@Builder
+)
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
-public class Like {
+@Builder
+public class Retweet {
+
     @Id
     @SequenceGenerator(
-            name = "like_sequence",
-            sequenceName = "like_sequence",
+            name = "retweet_sequence",
+            sequenceName = "retweet_sequence",
             allocationSize = 1)
 
     @GeneratedValue(
             strategy = SEQUENCE,
-            generator = "like_sequence"
+            generator = "retweet_sequence"
     )
     private Long id;
 
@@ -38,7 +32,7 @@ public class Like {
             nullable = false,
             referencedColumnName = "id",
             foreignKey = @ForeignKey(
-                    name="like_tweet_fk"
+                    name="retweet_tweet_fk"
             )
     )
     private Tweet tweet;
@@ -49,12 +43,9 @@ public class Like {
             nullable = false,
             referencedColumnName = "id",
             foreignKey = @ForeignKey(
-                    name="like_user_fk"
+                    name="retweet_user_fk"
             )
     )
     private User user;
 
-    @Column(nullable = true)
-    @CreationTimestamp
-    private LocalDateTime createdAt;
 }
